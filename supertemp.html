@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+  <title>Vega Lite Bar Chart</title>
+  <meta charset="utf-8">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.0-rc2/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.10/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.19/vega-embed.js"></script>
+
+  <style media="screen">
+    /* Add space between Vega-Embed links  */
+    .vega-actions a {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Meh</h1>
+  
+  <div id="vis2"></div>
+
+  <script>
+  var lol={
+    "$schema":"https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {  
+        "values":[
+            {"a":"Cafsd","b":2},{"a":"Cafd","b":5},{"a":"asfdD","b":12},
+            {"a":"Fdn","b":6},{"a":"Cafsd","b":4},{"a":"N","b":5},
+            {"a":"gafsd","b":2},{"a":"asfdV","b":5},{"a":"Casfdf","b":2},{"a":"afsdC","b":5},{"a":"fdghDd","b":12},
+            {"a":"F","b":6},{"a":"jC","b":4},{"a":"Nf","b":5},
+            {"a":"E","b":2},{"a":"Vf","b":5},{"a":"fC","b":2},{"a":"csdgfC","b":5},{"a":"Ddsgdfl","b":12},
+            {"a":"Faf","b":6},{"a":"gC","b":4},{"a":"Nadsf","b":5},
+            {"a":"Eacf","b":2},{"a":"Vascgdffd","b":5}, {"a":"Cafgsvdfd","b":2},{"a":"Cacfgd","b":5},{"a":"asfcdD","b":12},
+            {"a":"Fdzdfvn","b":6},{"a":"Casdffsd","b":4},{"a":"N","b":5},
+            {"a":"gvafsd","b":2},{"a":"asfvdV","b":5},{"a":"Casbfdf","b":2},{"a":"asdbgffsdC","b":5},{"a":"fdghDd","b":12},
+            {"a":"dsfF","b":6},{"a":"jsdfbC","b":4},{"a":"Ndgff","b":5},
+            {"a":"Edgf","b":2},{"a":"Vdfgf","b":5},{"a":"fC","b":2},{"a":"csdgfC","b":5},{"a":"Ddsgdfl","b":12},
+            {"a":"Fdgfaf","b":6},{"a":"dgfgC","b":4},{"a":"Naadfgdsf","b":5},
+            {"a":"Eaagdff","b":2},{"a":"Vasgfgdffd","b":5}
+        ]
+    },
+    "layer":[{
+      "hconcat":[{
+          //vis1
+          "mark":"point",
+          "encoding":{
+            "x":{
+              "field":"a",
+              "type": "nominal"
+            },
+            "y":{
+              "field":"b",
+              "type":"quantitative"
+            }
+          } 
+      },
+      {
+          //vis2
+          "mark":"point",
+          "encoding":{
+            "x":{
+              "field":"a",
+              "type": "nominal"
+            },
+            "y":{
+              "field":"b",
+              "type":"quantitative"
+            }
+          }
+      }]
+    },
+    {
+      "hconcat":[{
+          //vis3
+          "mark":"line",
+          "encoding":{
+            "x":{
+              "field":"a",
+              "type": "nominal"
+            },
+            "y":{
+              "field":"b",
+              "type":"quantitative"
+            }
+          }
+      },
+      {
+         //vis4
+         "mark":"line",
+          "encoding":{
+            "x":{
+              "field":"a",
+              "type": "nominal"
+            },
+            "y":{
+              "field":"b",
+              "type":"quantitative"
+            }
+          }
+      }
+      ] 
+    }
+    ]
+  
+  };
+  vega.embed("#lol", vis2, {"actions":false});
+  </script>
+

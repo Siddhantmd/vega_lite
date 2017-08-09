@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <title>Vega Lite Bar Chart</title>
+  <meta charset="utf-8">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.0-rc2/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.10/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.19/vega-embed.js"></script>
+
+  <style media="screen">
+    /* Add space between Vega-Embed links  */
+    .vega-actions a {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Meh</h1>
+  
+  <div id="vis"></div>
+
+  <script>
+  var lo1={
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "values": [
+        {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
+        {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
+        {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
+      ]
+    },
+
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "a", "type": "ordinal"},
+      "y": {"field": "b", "type": "quantitative"}
+    }
+
+    // "layer":[{
+    //   "mark": "bar",
+    //   "encoding": {
+    //     "x": {"field": "a", "type": "ordinal"},
+    //     "y": {"field": "b", "type": "quantitative"}
+    //   }
+    // },
+    // {
+    //   "mark": "point",
+    //   "encoding": {
+    //     "x": {"field": "a", "type": "ordinal"},
+    //     "y": {"field": "b", "type": "quantitative"}
+    //   }
+    // }]
+  };
+  vega.embed("#lo1", vis);
+</script>
+</body></html>
+

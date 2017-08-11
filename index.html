@@ -18,54 +18,160 @@
 <body>
   <h1>Trying composition in Vega-lite</h1>
   <!-- Container for the visualization -->
-  <div id="vis"></div>
+  Without concatenation and layering:
+  <div id="vis1"></div>
+  With only layering:
+  <div id="vis2"></div>
+  With concatenation and layering:
+  <div id="vis3"></div>
+  <script>
+	  // Assign the specification to a local variable vlSpec.
+	  var v1Spec = {
+	    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+	    "data": {
+	      "values": [
+	        {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
+	        {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
+	        {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+	      ]
+	    },
+	 	"mark": "bar",
+	       "encoding": {
+	         "x": {"field": "a", "type": "ordinal"},
+	         "y": {"field": "b", "type": "quantitative"}
+	       }
+
+	   
+
+
+	  }
+	  vega.embed("#vis1", v1Spec,{"actions":null});
+  </script>
+
+<script>
+	  // Assign the specification to a local variable vlSpec.
+	  var v2Spec = {
+	    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+	    "data": {
+	      "values": [
+	        {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
+	        {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
+	        {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+	      ]
+	    },
+	    //trying resolve, isn't working
+		"resolve": {
+		  CHANNEL: {
+		    "scale": "shared",  // Scale resolution
+		    "axis": "shared",  // Axis resolution for spatial channels
+		    "legend": "shared"  // Legend resolution for non-spatial channels
+		  }
+		},
+
+	  // "hconcat":[{
+	      "layer":[{
+	        "mark": "bar",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
+	      },
+	      {
+	        "mark": "point",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
+	      }
+	      ]
+	  // }
+
+	  // ,
+	  // {
+	  //     "layer":[{
+	  //       "mark": "bar",
+	  //       "encoding": {
+	  //         "x": {"field": "a", "type": "ordinal"},
+	  //         "y": {"field": "b", "type": "quantitative"}
+	  //       }
+	  //     },{
+	  //       "mark": "point",
+	  //       "encoding": {
+	  //         "x": {"field": "a", "type": "ordinal"},
+	  //         "y": {"field": "b", "type": "quantitative"}
+	  //       }
+
+	  //     }] 
+	  // }
+
+	  // ]
+	  };
+
+	  // Embed the visualization in the container with id `vis`
+	  vega.embed("#vis2", v2Spec,{"actions":null});
+  </script>
 
   <script>
-  // Assign the specification to a local variable vlSpec.
-  var vlSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-    "data": {
-      "values": [
-        {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
-        {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
-        {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
-      ]
-    },
+	  // Assign the specification to a local variable vlSpec.
+	  var v3Spec = {
+	    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+	    "data": {
+	      "values": [
+	        {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
+	        {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
+	        {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+	      ]
+	    },
+	    //trying resolve, isn't working
+		"resolve": {
+		  CHANNEL: {
+		    "scale": "shared",  // Scale resolution
+		    "axis": "shared",  // Axis resolution for spatial channels
+		    "legend": "shared"  // Legend resolution for non-spatial channels
+		  }
+		},
 
-  "layer":[{
-      "hconcat":[{
-        "mark": "bar",
-        "encoding": {
-          "x": {"field": "a", "type": "ordinal"},
-          "y": {"field": "b", "type": "quantitative"}
-        }
-      },{
-        "mark": "bar",
-        "encoding": {
-          "x": {"field": "a", "type": "ordinal"},
-          "y": {"field": "b", "type": "quantitative"}
-        }
-      }]
-  },{
-      "hconcat":[{
-        "mark": "bar",
-        "encoding": {
-          "x": {"field": "a", "type": "ordinal"},
-          "y": {"field": "b", "type": "quantitative"}
-        }
-      },{
-        "mark": "bar",
-        "encoding": {
-          "x": {"field": "a", "type": "ordinal"},
-          "y": {"field": "b", "type": "quantitative"}
-        }
+	  "hconcat":[{
+	      "layer":[{
+	        "mark": "bar",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
+	      },
+	      {
+	        "mark": "point",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
+	      }
+	      ]
+	  }
 
-      }] 
-  }]
-  };
+	  ,
+	  {
+	      "layer":[{
+	        "mark": "bar",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
+	      },{
+	        "mark": "point",
+	        "encoding": {
+	          "x": {"field": "a", "type": "ordinal"},
+	          "y": {"field": "b", "type": "quantitative"}
+	        }
 
-  // Embed the visualization in the container with id `vis`
-  vega.embed("#vis", vlSpec,{"actions":null});
+	      }] 
+	  }
+
+	  ]
+	  };
+
+	  // Embed the visualization in the container with id `vis`
+	  vega.embed("#vis3", v3Spec,{"actions":null});
   </script>
 
 
